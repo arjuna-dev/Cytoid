@@ -6,7 +6,8 @@ using File = System.IO.File;
 
 public class DebugNavigationController : MonoBehaviour
 {
-    public const string DebugLevelId = "io.cytoid.8bit_adventurer";
+    public const string DebugLevelId = "kiirtaniyas.hladini_excerpt";
+    private const string LegacyDebugLevelId = "io.cytoid.8bit_adventurer";
 
     public Button easyButton;
     public Button hardButton;
@@ -63,6 +64,15 @@ public class DebugNavigationController : MonoBehaviour
 
         if (debugLevel == null)
         {
+            // Keep the inherited Cytoid sample as a local fallback when a checkout
+            // intentionally omits the user-provided Kiirtan package.
+            debugLevel = await Context.LevelManager.LoadOrInstallBuiltInLevel(
+                LegacyDebugLevelId,
+                LevelType.BuiltIn);
+        }
+
+        if (debugLevel == null)
+        {
             if (resultText != null) resultText.text = $"Failed to load {DebugLevelId}";
             return;
         }
@@ -95,11 +105,12 @@ public class DebugNavigationController : MonoBehaviour
         var chart = debugLevel.Meta.charts.FirstOrDefault(it => it.type == difficulty.Id);
         if (chart == null)
         {
-            SetButtonText(button, $"{difficulty.Id.ToUpperInvariant()} missing");
             button.interactable = false;
+            button.gameObject.SetActive(false);
             return;
         }
 
+        button.gameObject.SetActive(true);
         SetButtonText(button, $"{ToDisplayName(difficulty)} {chart.difficulty}");
         button.interactable = true;
         button.onClick.AddListener(() => StartGame(difficulty));
@@ -144,6 +155,11 @@ public class DebugNavigationController : MonoBehaviour
 
     private static string ToDisplayName(Difficulty difficulty)
     {
+        if (difficulty == Difficulty.Hard && DebugLevelId == "kiirtaniyas.hladini_excerpt")
+        {
+            return "Medium";
+        }
+
         var id = difficulty.Id;
         return string.IsNullOrEmpty(id) ? "Unknown" : char.ToUpperInvariant(id[0]) + id.Substring(1);
     }

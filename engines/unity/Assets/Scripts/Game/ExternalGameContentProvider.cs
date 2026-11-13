@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Cysharp.Threading.Tasks;
-using E7.Native;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Polyglot;
 using UnityEngine;
+
+#if CYTOID_NATIVE_AUDIO
+using E7.Native;
+#endif
 
 public sealed class ExternalGameContentProvider : IGameContentProvider
 {
@@ -205,11 +208,21 @@ public sealed class ExternalGameContentProvider : IGameContentProvider
         {
             // Translate wire protocol bool? to AudioServerType enum (wire field stays bool? for protocol compat)
             var requested = settings.useNativeAudio.Value ? AudioServerType.Exceed7 : AudioServerType.Unity;
+#if CYTOID_NATIVE_AUDIO
             var effective = (requested == AudioServerType.Exceed7 && !NativeAudio.OnSupportedPlatform)
                 ? AudioServerType.Unity
                 : requested;
+#else
+            var effective = requested == AudioServerType.Exceed7
+                ? AudioServerType.Unity
+                : requested;
+#endif
             if (requested != effective)
+#if CYTOID_NATIVE_AUDIO
                 Debug.LogWarning("[Audio] Exceed7 requested but Native Audio not supported on this platform; falling back to Unity");
+#else
+                Debug.LogWarning("[Audio] Exceed7 requested but the optional Native Audio package is not installed; falling back to Unity");
+#endif
             target.AudioServer = effective;
             // No runtime server swap — applied at next AudioManager.Initialize()
             if (Context.AudioManager != null && Context.AudioManager.IsInitialized)

@@ -1,3 +1,4 @@
+#if CYTOID_NATIVE_AUDIO
 using UnityEngine;
 
 /// <summary>
@@ -54,3 +55,38 @@ public class Exceed7AudioServer : IAudioServer
     // HARD INVARIANT: Unity is always the music clock, even in Exceed7
     public double AudioClockSeconds => _unity.AudioClockSeconds;
 }
+#else
+using UnityEngine;
+
+/// <summary>
+/// Compatibility fallback for builds without the optional Native Audio package.
+/// AudioManager normally selects UnityAudioServer before this type is constructed,
+/// but retaining a complete Unity implementation keeps the enum and host protocol
+/// stable for callers that explicitly request Exceed7.
+/// </summary>
+public class Exceed7AudioServer : IAudioServer
+{
+    private readonly UnityAudioServer _fallback;
+
+    public Exceed7AudioServer(AudioSource musicSource, AudioSource[] sfxPool)
+    {
+        _fallback = new UnityAudioServer(musicSource, sfxPool);
+    }
+
+    public void Initialize() => _fallback.Initialize();
+    public void Dispose() => _fallback.Dispose();
+    public IMusicTrack LoadMusic(string id, AudioClip clip, bool isResource)
+        => _fallback.LoadMusic(id, clip, isResource);
+    public void UnloadMusic() => _fallback.UnloadMusic();
+    public void SetMusicVolume(float volume) => _fallback.SetMusicVolume(volume);
+    public ISoundEffect LoadSfx(string id, AudioClip clip, bool isResource, bool isPreloaded = false)
+        => _fallback.LoadSfx(id, clip, isResource, isPreloaded);
+    public ISoundEffect GetSfx(string id) => _fallback.GetSfx(id);
+    public void UnloadSfx(string id) => _fallback.UnloadSfx(id);
+    public bool IsSfxLoaded(string id) => _fallback.IsSfxLoaded(id);
+    public void SetSfxVolume(float volume) => _fallback.SetSfxVolume(volume);
+    public void UpdateVolumes(float musicVolume, float sfxVolume)
+        => _fallback.UpdateVolumes(musicVolume, sfxVolume);
+    public double AudioClockSeconds => _fallback.AudioClockSeconds;
+}
+#endif

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using Kiirtaniyas.Visual;
 using Cytoid.Storyboard;
 using Polyglot;
 using UnityEditor;
@@ -258,6 +259,11 @@ public class Game : MonoBehaviour
         var musicClip = await contentProvider.LoadMusic();
         Music = Context.AudioManager.LoadMusic("Level", musicClip, isResource: false);
         MusicLength = Music.Length;
+
+        // The standalone Android build overlays the Blender-authored world on
+        // this gameplay scene. Keeping the hook here means first play and
+        // inherited Game.Retry both load and bind the visual clock correctly.
+        await KiirtanGameplayVisualLoader.LoadStandaloneForGame();
 
         // Load storyboard
         var storyboardText = await contentProvider.LoadStoryboardText();

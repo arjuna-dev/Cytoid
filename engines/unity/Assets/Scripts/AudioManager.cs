@@ -1,6 +1,9 @@
 using System;
-using E7.Native;
 using UnityEngine;
+
+#if CYTOID_NATIVE_AUDIO
+using E7.Native;
+#endif
 
 public class AudioManager : SingletonMonoBehavior<AudioManager>
 {
@@ -26,11 +29,19 @@ public class AudioManager : SingletonMonoBehavior<AudioManager>
                 $"Expected 7 AudioSources (1 music + 6 SFX), got {audioSources.Length}");
 
         var serverType = Context.Player.Settings.AudioServer;
+#if CYTOID_NATIVE_AUDIO
         if (serverType == AudioServerType.Exceed7 && !NativeAudio.OnSupportedPlatform)
         {
             Debug.LogWarning("[Audio] Exceed7 not supported on this platform; falling back to Unity");
             serverType = AudioServerType.Unity;
         }
+#else
+        if (serverType == AudioServerType.Exceed7)
+        {
+            Debug.LogWarning("[Audio] Exceed7 requested but the optional Native Audio package is not installed; falling back to Unity");
+            serverType = AudioServerType.Unity;
+        }
+#endif
 
         IAudioServer server = serverType switch
         {

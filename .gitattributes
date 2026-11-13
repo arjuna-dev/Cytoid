@@ -80,6 +80,10 @@
 *.xcframework binary
 
 # Unity binary assets
+*.cytoidlevel binary
+*.fbx  binary
+*.blend binary
+*.blend1 binary
 *.cubemap binary
 *.fontalias binary
 

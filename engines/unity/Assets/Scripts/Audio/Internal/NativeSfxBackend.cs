@@ -1,3 +1,4 @@
+#if CYTOID_NATIVE_AUDIO
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -149,3 +150,4 @@ internal class NativeSfxBackend
         }
     }
 }
+#endif
