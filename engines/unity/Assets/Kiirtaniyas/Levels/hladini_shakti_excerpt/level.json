@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "version": 1,
+  "id": "kiirtaniyas.hladini_excerpt",
+  "title": "Hladini Shakti Kiirtana - Excerpt",
+  "artist": "Bhuvanesh",
+  "charter": "Kiirtaniyas United",
+  "music": {
+    "path": "music.mp3"
+  },
+  "music_preview": {
+    "path": "music.mp3"
+  },
+  "charts": [
+    {
+      "type": "easy",
+      "difficulty": 3,
+      "path": "chart.easy.json"
+    },
+    {
+      "type": "hard",
+      "name": "Medium",
+      "difficulty": 6,
+      "path": "chart.hard.json"
+    }
+  ]
+}

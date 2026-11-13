@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "version": 1,
+  "id": "kiirtaniyas.hladini_excerpt_luna_easy",
+  "title": "Hladini Shakti Kiirtana - Excerpt (Luna Easy Candidate)",
+  "artist": "Bhuvanesh",
+  "charter": "Luna candidate, generated from measured timing",
+  "music": {
+    "path": "music.mp3"
+  },
+  "music_preview": {
+    "path": "music.mp3"
+  },
+  "charts": [
+    {
+      "type": "easy",
+      "difficulty": 3,
+      "path": "chart.easy.json"
+    }
+  ]
+}

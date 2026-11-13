@@ -1,0 +1,11 @@
+{
+  "status": "ok",
+  "level": "validation fixture for level.json",
+  "chart": "chart.medium.json",
+  "level_id": "kiirtaniyas.hladini_excerpt_luna_medium",
+  "note_count": 580,
+  "page_count": 358,
+  "tempo_count": 358,
+  "music_offset": -0.267029,
+  "chart_duration_seconds": 209.327892
+}

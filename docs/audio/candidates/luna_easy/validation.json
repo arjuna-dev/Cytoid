@@ -1,0 +1,38 @@
+{
+  "status": "ok",
+  "candidate": "luna_easy",
+  "level": "docs/audio/candidates/luna_easy/level.json",
+  "chart": "docs/audio/candidates/luna_easy/chart.easy.json",
+  "analysis": "docs/audio/hladini_shakti_excerpt.analysis.json",
+  "timing_source": "measured beat grid, piecewise tempo map",
+  "note_count": 179,
+  "measured_beat_count": 358,
+  "density_ratio": 0.5,
+  "selection_rule": "every second measured beat, starting at beat 0",
+  "first_selected_beat_index": 0,
+  "last_selected_beat_index": 356,
+  "max_chart_analysis_error_seconds": 0.0,
+  "note_gap_seconds": {
+    "minimum": 1.084615,
+    "maximum": 1.25467,
+    "mean": 1.172608
+  },
+  "note_type_counts": {
+    "0": 179
+  },
+  "hold_count": 0,
+  "sibling_count": 0,
+  "page_count": 179,
+  "tempo_count": 358,
+  "music_offset": -0.267029,
+  "base_validator": {
+    "level": "/Users/alejandrocamus/Documents/dev/KIIRTAN_CYTOID/docs/audio/candidates/luna_easy/level.json",
+    "chart": "/Users/alejandrocamus/Documents/dev/KIIRTAN_CYTOID/docs/audio/candidates/luna_easy/chart.easy.json",
+    "level_id": "kiirtaniyas.hladini_excerpt_luna_easy",
+    "note_count": 179,
+    "page_count": 179,
+    "tempo_count": 358,
+    "music_offset": -0.267029,
+    "chart_duration_seconds": 208.724173
+  }
+}

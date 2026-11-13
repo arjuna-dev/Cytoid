@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "level": "/Users/alejandrocamus/Documents/dev/KIIRTAN_CYTOID/docs/audio/candidates/astra_medium/validator_adapter.json",
+  "chart": "/Users/alejandrocamus/Documents/dev/KIIRTAN_CYTOID/docs/audio/candidates/astra_medium/chart.medium.json",
+  "level_id": "kiirtaniyas.hladini_excerpt_astra_medium",
+  "note_count": 529,
+  "page_count": 90,
+  "tempo_count": 358,
+  "music_offset": -0.267029,
+  "chart_duration_seconds": 209.327892,
+  "adapter_reason": "Validator is easy-only; packaged chart type is hard."
+}

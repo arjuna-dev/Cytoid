@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "version": 1,
+  "id": "kiirtaniyas.hladini_excerpt_astra_medium",
+  "title": "Hladini Shakti Kiirtana - Excerpt (Astra Medium Candidate)",
+  "artist": "Bhuvanesh",
+  "charter": "Kiirtaniyas United - Astra candidate",
+  "music": {
+    "path": "music.mp3"
+  },
+  "music_preview": {
+    "path": "music.mp3"
+  },
+  "charts": [
+    {
+      "type": "easy",
+      "name": "Medium (Astra candidate)",
+      "difficulty": 6,
+      "path": "chart.medium.json"
+    }
+  ]
+}

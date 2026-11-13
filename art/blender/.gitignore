@@ -1,0 +1,2 @@
+# Local Blender recovery copies. The primary .blend source is versioned.
+*.blend[0-9]
